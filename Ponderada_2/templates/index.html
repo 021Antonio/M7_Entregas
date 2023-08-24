@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Estilo para a caixa */
+        .caixa {
+            width: 400px;
+            height: 300px;
+            background-color: #f0f0f0;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        
+
+    </style>
+</head>
+<body>
+     <!-- A caixa é criada usando a tag <div> -->
+    <div class="caixa">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+
+            <div class="text" id="user_accont">
+
+                <div id="user_name">
+                    <input type="user" id="user" placeholder="Digite seu nome">
+                </div>
+    
+                <div id="user_password">
+                    <input type="password" id="password" placeholder="Digite sua senha">
+                </div>
+
+            </div>
+
+            <div class="btn">
+                <input type="submit" value="Entrar">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
