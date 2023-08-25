@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    
+
+</head>
+<body>
+    
+    <div id="main">
+        
+        <form action="/login" method="post">
+            <div id="text_box">
+                <H1>Login</H1>
+                <div id="text_box_x">
+                    <input type="text" id="name"  name = "name" placeholder="Digite seu nome"></input>
+                </div>
+
+                <div id="text_box_y">
+                    <input type="text" id="password" name = "password" placeholder="Digite sua senha"></input>
+                </div>
+
+               
+
+            </div>
+
+            
+            <div id="btn">
+                <div>
+                    <input type="submit" value="Aperte para salvar">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>password</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_base in user_login %}
+                <tr>
+                    <td>{{user_base.name}}</td>
+                    <td>{{user_base.password}}</td>
+                   
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
