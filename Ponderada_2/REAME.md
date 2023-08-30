@@ -2,29 +2,27 @@
 
 ### <b>Motivação</b> </h3>
 
-A api utilizada foi o FLask. Utilizei como base 
+A api utilizada foi o FLask. Utilizei como base uma ponderada e prova referente ao modulo 5. 
 
 
 ### <b>Como utilizar</b> </h3>
 
-O primeiro passo é criar uma venv utilizando os comandos 
-
-``` 
-mkdir venv
-python -m venv vevn
-venv/Scripts/activate
-```
-
-Agora, precisa baixar o Flask utilizando o comando 
+A API utiliza o Flask, que é um microframework para Python e como banco de dados, utilizei SQLAlchemy. Para instalar o Flask, basta utilizar o comando
 
 ```
 pip install Flask
+pip install SQLAlchemy
 ```
  Pronto, agora esta tudo certo para rodar o projeto. 
 
+
 ### <b>Pastas</b> </h3>
 
-A pasta principal onde contem a aplicação é a 'src', nela contem o "dockerfile", "templates"(contem o html) e o "app.py" que é nossa api em flask ligando ao html
+A estrutura de pastas separa o banco de dados e o html da aplicação. 
+
+A pasta model, contem o banco de dados. O arquivo "base.py" contem a estrutura do banco de dados, e o arquivo "model.py" contem as tabelas do banco de dados.
+
+A pasta templates contem o html da aplicação. O arquivo "index.html" contem a pagina inicial da aplicação.
 
 ### <b>Sobre a api</b> </h3>
 
@@ -38,6 +36,23 @@ Iniciamos a aplicação
 ```
 app = Flask(__name__)
 ```
+Nesta parte, chamo o banco de dados e crio a sessão
+
+```
+engine = create_engine('sqlite:///database.db')
+#Identificando a rota onde o banco de dados será criado
+
+Session = sessionmaker(bind=engine)
+#Criando a sessão
+
+session = Session()
+#Iniciando a sessão
+
+Base.metadata.create_all(engine)
+#Criando o banco de dados
+
+```
+
 Aqui criamos a rota para a pagina inicial, que seria o index.html
 
 ```
@@ -45,6 +60,43 @@ Aqui criamos a rota para a pagina inicial, que seria o index.html
 def index():
     return render_template('index.html')
 ```
+Criando uma rota para verificar o login existe no banco de dados
+
+```
+@app.route('/login', methods=['GET'])
+def login_form():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    name = request.form['name']
+    password = request.form['password']
+    
+    
+    user = session.query(UserBase).filter_by(name=name, password=password).first()
+    
+    if user:
+        return "Login bem-sucedido"
+    else:
+        return "Credenciais inválidas. Tente novamente."
+
+```
+
+E neste criamos um novo login para o usuario
+
+```
+@app.route('/creat_login', methods = ['POST'])
+def create_user():
+
+    name = request.form['name']
+    password = request.form['password']
+   
+    user_base = UserBase(name = name, password = password)
+    session.add(user_base)
+    session.commit()
+    return redirect('/')
+```	
+
 E aqui rodamos a aplicação
 ```
 if __name__ == '__main__':
@@ -85,31 +137,14 @@ docker run -p 5000:5000 python-docker
 
 ### <b>Subindo a imagem no docker hub</b> </h3>
 
-Para subir a imagem no docker hub, precisamos criar uma conta no site do docker hub. Após criar a conta, precisamos logar no docker hub utilizando o comando 
+A meta da ponderada é criar um docker Composer, que seria um arquivo que ira criar varios conteineres.
 
-```
-docker login
-```
-Após logar, precisamos criar uma tag para a imagem utilizando o comando 
-
-```
-docker tag python-docker nome_do_usuario/nome_do_repositorio
-```
-Após criar a tag, precisamos subir a imagem utilizando o comando 
-
-```
-docker push nome_do_usuario/nome_do_repositorio
-```
-Pronto, a imagem foi subida no [docker hub](https://hub.docker.com/r/antonioribeiro893/python-docker/tags).
+<h1>EM Construção....
 
 
 <h1> OBS </h1>
 
-Eu fiz fui pesquisando passo a passo em varios lugares diferentes ate consegui rodar. Com toda a certeza, eu cometi alguns erros e vou tentar corrigir o mais rápido possivel.
-
-Um exemplo foi que eu criei o build 3 vezes, um normal, um com uma tag bonita e outro com o nome diferente. A questao é, como eu fiz isso?
-
-Eu vou tentar descorbrir amanhã (14/08/2023) como eu fiz isso e vou refazer do zero para fazer melhor. 
+Fiz varias tentativas para subir o docker compose, mas não consegui. Ele da um erro de login mesmo ja estando logado. Acredito que seja algum erro na configuração do docker  
 
 
 
