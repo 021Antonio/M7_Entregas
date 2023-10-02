@@ -17,6 +17,9 @@ input_model = create_model("python_api_input", **{'age': 0.3932584226131439, 'ge
 output_model = create_model("python_api_output", prediction=0.0)
 
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the API!"}
 # Define predict function
 @app.post("/predict", response_model=output_model)
 def predict(data: input_model):
