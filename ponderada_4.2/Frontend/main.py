@@ -40,8 +40,11 @@ def login():
         
 @app.route('/dashboard', methods=['GET'])
 def dashboard():
-   
-    return render_template('dashboard.html')  
+    # Lógica para gerar o gráfico usando Streamlit
+    # Substitua isso pela lógica real de geração do gráfico
+    # Exemplo: return "Aqui está o gráfico gerado pelo Streamlit!"
+    return render_template('dashboard.html')  # Se você quiser renderizar um template do Flask
+
 
 
 
