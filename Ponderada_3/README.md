@@ -35,4 +35,5 @@ import pickle # Salvar modelo
  ```
  No presente momento, estou tendo resolver este problema sem desistalar o python.
 
- <h1>EM CONSTRUÇÃO . . .</h1>  
+ # [Continuação da ponderada 3](../Ponderada_4/REAME.md)
+
