@@ -33,7 +33,7 @@ def create_user(username: str, password: str):
     session.add(user)
     session.commit()
     session.close()
-    return "Credenciais inválidas. Tente novamente."
+    return "Criado com sucesso."
 
 # Rota para realizar o login (apenas verifica se o usuário existe, não faz autenticação real neste exemplo)
 @app.post("/login", tags=["posts"])

@@ -129,6 +129,7 @@ Por exemplo:
     fastapi
     uvicorn
     ...
+    sqlalchemy
     ```
 
 Apos gerar o requiremnets.txt, basta criar um arquivo chamado "Dockerfile" na pasta "APP".

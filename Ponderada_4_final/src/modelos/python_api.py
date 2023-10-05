@@ -13,7 +13,7 @@ app = FastAPI()
 model = load_model("python_api")
 
 # Create input/output pydantic models
-input_model = create_model("python_api_input", **{'age': 0.3932584226131439, 'gender': 1.0, 'impluse': 0.060494959354400635, 'pressurehight': 0.5745856165885925, 'pressurelow': 0.4655172526836395, 'glucose': 0.16403162479400635, 'kcm': 0.005369078367948532, 'troponin': 0.0004854840226471424})
+input_model = create_model("python_api_input", **{'age': 0.4, 'gender': 1.0, 'impluse': 0.060494959354400635, 'pressurehight': 0.5745856165885925, 'pressurelow': 0.4655172526836395, 'glucose': 0.16403162479400635, 'kcm': 0.005369078367948532, 'troponin': 0.0004854840226471424})
 output_model = create_model("python_api_output", prediction=0.0)
 
 
